@@ -1,10 +1,14 @@
-class NilClass
+require './convert'
+
+class String
   def to_s
-    "nil"
+    inspect
   end
 end
 
 module Command
+  include Convert
+
   EXIT_PATTERN = /(exit|quit)/.freeze
 
   def command_check(command, object)
@@ -13,7 +17,7 @@ module Command
       exit
     else
       begin
-        eval("#{[object, command].map(&:to_s).join('.')}")
+        eval("#{[object.to_s, command].join('.')}")
       rescue
         $stdout.puts "Undefined method."
         return false

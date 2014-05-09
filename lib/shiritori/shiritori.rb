@@ -1,9 +1,11 @@
 require './search_method'
 require './command'
+require './convert'
 
 class Shiritori
   include SearchMethod
   include Command
+  include Convert
 
   def initialize
     @all_method = get_all_method
@@ -30,7 +32,7 @@ class Shiritori
       begin 
         str = gets.chomp
         @current_object = eval(str)
-        @current_chain << @current_object
+        @current_chain << @current_object.inspect
         break
       rescue
         $stdout.puts "Undefined object error"
@@ -44,8 +46,10 @@ class Shiritori
       show
       $stdout.print "Input next method > "
       method = gets.chomp
+      method.sub!(/^\./,"")
+
       if command_check(method, @current_object)
-        @current_object = eval("#{[@current_object, method].map(&:to_s).join('.')}")
+        @current_object = eval("#{[@current_object.to_s, method].join('.')}")
         @current_chain << method
         update
       end
