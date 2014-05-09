@@ -48,10 +48,15 @@ class Shiritori
       method = gets.chomp
       method.sub!(/^\./,"")
 
-      if command_check(method, @current_object)
-        @current_object = eval("#{[@current_object.to_s, method].join('.')}")
-        @current_chain << method
-        update
+      if method_symbol = command_check(method, @current_object)
+        if @all_method.include?(method_symbol)
+          @all_method.delete(method_symbol)
+          @current_object = eval("#{[@current_object.to_s, method].join('.')}")
+          @current_chain << method
+          update
+        else
+          $stdout.puts "Already used method."
+        end
       end
     end
   end
