@@ -1,5 +1,3 @@
 require "shiritori/version"
-
-module Shiritori
-  # Your code goes here...
-end
+require "shiritori/main"
+require "shiritori/search_method"
