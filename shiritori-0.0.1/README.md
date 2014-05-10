@@ -4,11 +4,17 @@ Let's try to create too long method chain!
 
 ## Installation
 
-install it yourself as:
+Add this line to your application's Gemfile:
+
+    gem 'shiritori'
+
+And then execute:
+
+    $ bundle
+
+Or install it yourself as:
 
     $ gem install shiritori
-
-Let's start creation long method chain.
 
 ## Usage
 
