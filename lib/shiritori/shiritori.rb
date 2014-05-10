@@ -1,8 +1,10 @@
 module Shiritori
   class Main
-    include Convert
-    include Command
     include SearchMethod
+    include View
+
+    EXIT_PATTERN = /(exit|quit)/.freeze
+    METHOD_PATTERN = /[\w|\?|\>|\=|\!|\[|\[|\]]+/.freeze
 
     def initialize
       @all_method = get_all_method
@@ -11,12 +13,6 @@ module Shiritori
       @current_chain = []
       init
       run
-    end
-
-    def show
-      $stdout.puts "Current method chain: #{@current_chain.join('.')}"
-      $stdout.puts "Current class: #{@current_class}"
-      $stdout.puts "Current object: #{@current_object.inspect}"
     end
 
     def update
@@ -32,6 +28,7 @@ module Shiritori
           @current_chain << @current_object.inspect
           break
         rescue
+          new_line
           $stdout.puts "Undefined object error"
         end
       end
@@ -41,7 +38,7 @@ module Shiritori
     def run
       loop do
         show
-        $stdout.print "Input next method > "
+        $stdout.print "Please input next method > "
         method = gets.chomp
         method.sub!(/^\./,"")
 
@@ -58,7 +55,26 @@ module Shiritori
       end
     end
 
-    def can_use?(method)
+    def command_check(command, object)
+      method_name = command.scan(METHOD_PATTERN).first
+
+      case command
+      when EXIT_PATTERN
+        exit
+      else
+        begin
+          $stdout.puts "Exec command #{[object.to_s, command].join('.')}"
+
+          Thread.new do
+            eval("#{[object.to_s, command].join('.')}")
+          end.join
+        rescue => ex
+          $stdout.puts ex.message
+          return false
+        end
+      end
+
+      method_name.to_sym
     end
   end
 end
