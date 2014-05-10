@@ -8,7 +8,14 @@ module Shiritori
 
     def show
       new_line
-      $stdout.puts "Current method chain: #{@current_chain.join('.')}"
+      chain = "#{@current_chain.join('.')}"
+      chain_size = [chain.size+PADDING, 22].max
+
+      $stdout.puts "+#{'-'*chain_size}+"
+      $stdout.puts "|#{"Current method chain".center(chain_size)}|"
+      $stdout.puts "+#{'-'*chain_size}+"
+      $stdout.puts "|#{@current_chain.join('.').center(chain_size)}|"
+      $stdout.puts "+#{'-'*chain_size}+"
 
       cls = "#{@current_class}"
       obj = "#{@current_object.inspect}"

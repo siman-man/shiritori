@@ -15,10 +15,11 @@ module Shiritori
 
     def scan_method(klass = BasicObject)
       @check_list[klass] = true
+      @method_list |= klass.instance_methods
+      
       ObjectSpace.each_object(singleton(klass)) do |subclass| 
         if klass != subclass
-          @method_list |= subclass.public_instance_methods(false)
-          @method_list |= subclass.protected_instance_methods(false)
+          @method_list |= subclass.instance_methods
           scan_method(subclass) unless @check_list[subclass]
         end 
       end

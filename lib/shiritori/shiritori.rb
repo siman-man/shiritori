@@ -1,14 +1,16 @@
+require 'pp'
+
 module Shiritori
   class Main
     include SearchMethod
     include View
 
     EXIT_PATTERN = /(exit|quit)/.freeze
-    METHOD_PATTERN = /[\w|\?|\>|\=|\!|\[|\[|\]]+/.freeze
+    METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~]+/.freeze
 
     def initialize
       @all_method = get_all_method
-      @current_object = Object.new
+      @current_object = Object.new.taint
       @current_class = Object
       @current_chain = []
       init
@@ -42,7 +44,7 @@ module Shiritori
         method = gets.chomp
         method.sub!(/^\./,"")
 
-        if method_symbol = command_check(method, @current_object)
+        if p method_symbol = command_check(method, @current_object)
           if @all_method.include?(method_symbol)
             @all_method.delete(method_symbol)
             @current_object = eval("#{[@current_object.to_s, method].join('.')}")
@@ -66,7 +68,7 @@ module Shiritori
           $stdout.puts "Exec command #{[object.to_s, command].join('.')}"
 
           Thread.new do
-            eval("#{[object.to_s, command].join('.')}")
+            eval("$SAFE = 3; #{[object.to_s, command].join('.')}")
           end.join
         rescue => ex
           $stdout.puts ex.message
