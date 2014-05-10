@@ -17,6 +17,7 @@ test/version_tmp
 tmp
 
 # Ignore junk file
+shiritori-*/*
 doc/
 **/*.swp
 *.swp
