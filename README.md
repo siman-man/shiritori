@@ -10,21 +10,20 @@ install it yourself as:
 
 Let's start creation long method chain.
 
-## Usage
-
-Let's play shiritori!, your input command 'shiritori'
-
 ## Rule
 
 1. You set first object.
 
 2. Input the method that object can use.
-⋅⋅* Don't use same method.
-⋅⋅* Don't override or define new method.
+  * You can not use the method that has been used once.
+  * Don't override or define new method.
 
 3. It continue until the method can not be input.
 
 4. Let's enjoy shiritori!
+
+ 
+## Usage
 
 ## Contributing
 
