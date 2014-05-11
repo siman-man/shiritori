@@ -25,6 +25,58 @@ Let's start creation long method chain.
  
 ## Usage
 
+```
+% shiritori                            
+Please input first object > "Hello"
+
++----------------------+
+| Current method chain |
++----------------------+
+|       "Hello"        |
++----------------------+
+
++---------------+----------------+
+| Current Class | Current Object |
++---------------+----------------+
+|    String     |    "Hello"     |
++---------------+----------------+
+
+Please input next method > chars
+Exec command "Hello".chars
+:chars
+
++----------------------+
+| Current method chain |
++----------------------+
+|    "Hello".chars     |
++----------------------+
+
++---------------+---------------------------+
+| Current Class |      Current Object       |
++---------------+---------------------------+
+|     Array     | ["H", "e", "l", "l", "o"] |
++---------------+---------------------------+
+
+Please input next method > first
+Exec command ["H", "e", "l", "l", "o"].first
+:first
+
++----------------------+
+| Current method chain |
++----------------------+
+| "Hello".chars.first  |
++----------------------+
+
++---------------+----------------+
+| Current Class | Current Object |
++---------------+----------------+
+|    String     |      "H"       |
++---------------+----------------+
+
+Please input next method >
+```
+
+
 ## Contributing
 
 1. Fork it ( https://github.com/[my-github-username]/shiritori/fork )
