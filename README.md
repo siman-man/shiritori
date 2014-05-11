@@ -12,7 +12,19 @@ Let's start creation long method chain.
 
 ## Usage
 
-TODO: Write usage instructions here
+Let's play shiritori!, your input command 'shiritori'
+
+## Rule
+
+1. You set first object.
+
+2. Input the method that object can use.
+⋅⋅* Don't use same method.
+⋅⋅* Don't override or define new method.
+
+3. It continue until the method can not be input.
+
+4. Let's enjoy shiritori!
 
 ## Contributing
 
