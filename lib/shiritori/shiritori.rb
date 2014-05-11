@@ -41,7 +41,7 @@ module Shiritori
         method = $stdin.gets.chomp
         method.sub!(/^\./,"")
 
-        if p method_symbol = command_check(method, @current_object)
+        if method_symbol = command_check(method, @current_object)
           if @all_method.include?(method_symbol)
             @all_method.delete(method_symbol)
             @current_object = eval("#{[@current_object.to_s, method].join('.')}")

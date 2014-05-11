@@ -43,7 +43,6 @@ Please input first object > "Hello"
 
 Please input next method > chars
 Exec command "Hello".chars
-:chars
 
 +----------------------+
 | Current method chain |
@@ -59,7 +58,6 @@ Exec command "Hello".chars
 
 Please input next method > first
 Exec command ["H", "e", "l", "l", "o"].first
-:first
 
 +----------------------+
 | Current method chain |
