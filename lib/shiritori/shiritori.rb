@@ -51,7 +51,6 @@ module Shiritori
         if method_symbol = command_check(method, @current_object)
           if @all_method.include?(method_symbol)
             @all_method.delete(method_symbol)
-            #@current_object = eval("#{[@current_object.to_s, method].join('.')}")
             @current_object = @current_object.instance_eval{ eval("self."+method) }
             @current_chain << method
             update
@@ -75,7 +74,6 @@ module Shiritori
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
             object.instance_eval{ eval("self."+command) }
-            #eval("#{[object.to_s, command].join('.')}")
           end.join
         rescue Exception => ex
           puts ex.message

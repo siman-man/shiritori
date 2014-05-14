@@ -30,6 +30,6 @@ class BasicObject
   end
 
   def eval(str)
-    instance_eval{ instance_eval("self."+str) }
+    instance_eval{ instance_eval(str) }
   end
 end

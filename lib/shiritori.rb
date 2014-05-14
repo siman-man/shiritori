@@ -1,5 +1,3 @@
-require 'pp'
-
 require "shiritori/version"
 require "shiritori/search_method"
 require 'shiritori/view'
