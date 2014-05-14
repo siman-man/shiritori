@@ -51,7 +51,8 @@ module Shiritori
         if method_symbol = command_check(method, @current_object)
           if @all_method.include?(method_symbol)
             @all_method.delete(method_symbol)
-            @current_object = eval("#{[@current_object.to_s, method].join('.')}")
+            #@current_object = eval("#{[@current_object.to_s, method].join('.')}")
+            @current_object = @current_object.instance_eval{ eval("self."+method) }
             @current_chain << method
             update
           else
@@ -62,7 +63,7 @@ module Shiritori
     end
 
     def command_check(command, object)
-      method_name = command.scan(METHOD_PATTERN).first
+      method_name = command.scan(METHOD_PATTERN).first.to_sym
 
       case command
       when EXIT_PATTERN
@@ -72,7 +73,9 @@ module Shiritori
           puts "Exec command #{[object.to_s, command].join('.')}"
 
           Thread.new do
-            eval("#{[object.to_s, command].join('.')}")
+            raise NoMethodError unless object.respond_to?(method_name)
+            object.instance_eval{ eval("self."+command) }
+            #eval("#{[object.to_s, command].join('.')}")
           end.join
         rescue Exception => ex
           puts ex.message
@@ -80,7 +83,7 @@ module Shiritori
         end
       end
 
-      method_name.to_sym
+      method_name
     end
   end
 end
