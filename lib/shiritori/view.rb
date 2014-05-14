@@ -18,7 +18,7 @@ module Shiritori
       $stdout.puts "+#{'-'*chain_size}+"
 
       cls = "#{@current_class}"
-      obj = "#{@current_object}"
+      obj = "#{@current_object.inspect}"
       cls_size = ["#{@current_class}".size, 13].max+PADDING
       obj_size = ["#{@current_object}".size, 14].max+PADDING
 
