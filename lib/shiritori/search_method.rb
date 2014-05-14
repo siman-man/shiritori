@@ -16,7 +16,7 @@ module Shiritori
     def scan_method(klass = BasicObject)
       @check_list[klass] = true
       @method_list |= klass.instance_methods
-      
+
       ObjectSpace.each_object(singleton(klass)) do |subclass| 
         if klass != subclass
           scan_method(subclass) unless @check_list[subclass]

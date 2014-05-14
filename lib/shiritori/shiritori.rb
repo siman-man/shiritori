@@ -13,12 +13,18 @@ module Shiritori
       @current_object = nil
       @current_class = Object
       @current_chain = []
+      @chain_count = 0
       init
       run
     end
 
     def update
-      @current_class = @current_object.class
+      begin
+        @current_class = @current_object.class
+      rescue Exception => ex
+        @current_class = "Undefined"
+      end
+      @chain_count += 1
     end
 
     def init
@@ -37,6 +43,7 @@ module Shiritori
     def run
       loop do
         show
+        puts "Current Chain Count: #{@chain_count}"
         $stdout.print "Please input next method > "
         method = $stdin.gets.chomp
         method.sub!(/^\./,"")
@@ -62,13 +69,13 @@ module Shiritori
         exit
       else
         begin
-          $stdout.puts "Exec command #{[object.to_s, command].join('.')}"
+          puts "Exec command #{[object.to_s, command].join('.')}"
 
           Thread.new do
-            eval("$SAFE = 3; #{[object.to_s, command].join('.')}")
+            eval("#{[object.to_s, command].join('.')}")
           end.join
-        rescue => ex
-          $stdout.puts ex.message
+        rescue Exception => ex
+          puts ex.message
           return false
         end
       end
