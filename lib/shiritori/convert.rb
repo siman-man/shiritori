@@ -1,17 +1,17 @@
 class String
-  def to_s
+  def to_ss
     inspect
   end
 end
 
 class NilClass
-  def to_s
+  def to_ss
     "nil"
   end
 end
 
 class Symbol
-  def to_s
+  def to_ss
     inspect
   end
 end
@@ -21,7 +21,7 @@ class BasicObject
     self
   end 
 
-  def to_s
+  def to_ss
     self
   end
 

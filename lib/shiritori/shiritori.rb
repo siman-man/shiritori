@@ -6,16 +6,15 @@ module Shiritori
     include View
 
     EXIT_PATTERN = /(exit|quit)/.freeze
-    METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~]+/.freeze
+    METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
-    def initialize
-      @all_method = get_all_method
-      @current_object = nil
-      @current_class = Object
-      @current_chain = []
-      @chain_count = 0
-      init
-      run
+    class << self
+      def start
+        self.new.instance_eval do
+          init
+          run
+        end
+      end
     end
 
     def update
@@ -28,6 +27,12 @@ module Shiritori
     end
 
     def init
+      @all_method = get_all_method
+      @current_object = nil
+      @current_class = Object
+      @current_chain = []
+      @chain_count = 0
+
       $stdout.print "Please input first object > "
       begin 
         str = $stdin.gets.chomp
@@ -46,12 +51,13 @@ module Shiritori
         puts "Current Chain Count: #{@chain_count}"
         $stdout.print "Please input next method > "
         method = $stdin.gets.chomp
-        method.sub!(/^\./,"")
 
-        if method_symbol = command_check(method, @current_object)
-          if @all_method.include?(method_symbol)
-            @all_method.delete(method_symbol)
-            @current_object = @current_object.instance_eval{ eval("self."+method) }
+        puts "Exec command #{[@current_object.to_ss, method].join('.')}"
+
+        if result = exec_method_chain(method, @current_object)
+          if @all_method.include?(result.first)
+            @all_method.delete(result.first)
+            @current_object = result.last
             @current_chain << method
             update
           else
@@ -61,19 +67,19 @@ module Shiritori
       end
     end
 
-    def command_check(command, object)
+    def exec_method_chain(command, object)
+      command.sub!(/^\./,"")
       method_name = command.scan(METHOD_PATTERN).first.to_sym
+      result = [ method_name ]
 
       case command
       when EXIT_PATTERN
         exit
       else
         begin
-          puts "Exec command #{[object.to_s, command].join('.')}"
-
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
-            object.instance_eval{ eval("self."+command) }
+            result << object.instance_eval{ eval("self."+command) }
           end.join
         rescue Exception => ex
           puts ex.message
@@ -81,7 +87,7 @@ module Shiritori
         end
       end
 
-      method_name
+      result
     end
   end
 end
