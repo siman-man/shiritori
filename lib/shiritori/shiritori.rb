@@ -72,6 +72,10 @@ module Shiritori
       method_name = command.scan(METHOD_PATTERN).first.to_sym
       result = [ method_name ]
 
+      # puts debug
+      puts "Exec command #{[object.to_ss, command].join('.')}"
+      p method_name
+
       case command
       when EXIT_PATTERN
         exit
