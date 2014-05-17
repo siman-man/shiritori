@@ -33,6 +33,7 @@ module Shiritori
 
     def init
       @all_method = get_all_method
+      p @all_method.include?(:exit)
       @current_object = nil
       @current_class = Object
       @current_chain = []
@@ -57,12 +58,17 @@ module Shiritori
         print "Please input next method > "      
         command = $stdin.gets.chomp.sub(/^\./,"")
 
+        redo if command.blank?
+
+        p command
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
         if result = exec_method_chain(command, @current_object)
           if @all_method.include?(result.first)
             update(result)
             @current_chain << command
+          elsif result.first == :exit
+            break
           else
             $stdout.puts "Already used method."
           end
@@ -80,7 +86,7 @@ module Shiritori
 
       case command
       when EXIT_PATTERN
-        exit
+        return [:exit]
       else
         begin
           Thread.new do

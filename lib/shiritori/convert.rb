@@ -1,6 +1,8 @@
 class String
-  def to_ss
-    inspect
+  BLANK_PATTERN = /\A\s*\z/
+  
+  def blank?
+    BLANK_PATTERN === self
   end
 end
 
@@ -10,7 +12,7 @@ class NilClass
   end
 end
 
-class Symbol
+class Object
   def to_ss
     inspect
   end
