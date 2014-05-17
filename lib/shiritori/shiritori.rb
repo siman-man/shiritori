@@ -17,9 +17,11 @@ module Shiritori
       end
     end
 
-    def update(result)
-      @all_method.delete(result.first)
-      @current_object = result.last
+    def update(result = nil)
+      if result
+        @all_method.delete(result.first)
+        @current_object = result.last
+      end
 
       begin
         @current_class = @current_object.class
@@ -53,9 +55,9 @@ module Shiritori
         show_status
 
         print "Please input next method > "      
-        command = $stdin.gets.chomp.sub!(/^\./,"")
+        command = $stdin.gets.chomp.sub(/^\./,"")
 
-        puts "Exec command #{[@current_object.to_ss, method].join('.')}"
+        puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
         if result = exec_method_chain(command, @current_object)
           if @all_method.include?(result.first)
