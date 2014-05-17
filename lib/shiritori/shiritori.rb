@@ -60,7 +60,6 @@ module Shiritori
 
         command = command.chomp.sub(/^\./,"")
 
-        p command
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
         if result = exec_method_chain(command, @current_object)
@@ -79,10 +78,6 @@ module Shiritori
     def exec_method_chain(command, object)
       method_name = command.scan(METHOD_PATTERN).first.to_sym
       result = [ method_name ]
-
-      # puts debug
-      puts "Exec command #{[object.to_ss, command].join('.')}"
-      p method_name
 
       case command
       when EXIT_PATTERN

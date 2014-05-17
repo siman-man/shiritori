@@ -114,5 +114,13 @@ describe "Shiritori test" do
       expect(result.first).to eq :upto
       expect(result.last.to_a).to eq 'A'.upto('Z').to_a
     end
+
+    it '#index method' do
+      expect(check("index('R')")).to eq [:index, object.index('R')]
+    end
+
+    it '#rindex method' do
+      expect(check("index('R')")).to eq [:index, object.index('R')]
+    end
   end
 end
