@@ -2,19 +2,16 @@ require 'pp'
 
 module Shiritori
   class Main
+    attr_reader :current_object, :chain_count
     include SearchMethod
     include View
 
     EXIT_PATTERN = /(exit|quit)/.freeze
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
-    class << self
-      def start
-        self.new.instance_eval do
-          init
-          run
-        end
-      end
+    def start
+      init
+      run
     end
 
     def update(result = nil)
@@ -56,9 +53,12 @@ module Shiritori
         show_status
 
         print "Please input next method > "      
-        command = $stdin.gets.chomp.sub(/^\./,"")
+        command = $stdin.gets
 
+        break if command.nil?
         redo if command.blank?
+
+        command = command.chomp.sub(/^\./,"")
 
         p command
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"

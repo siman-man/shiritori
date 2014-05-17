@@ -19,10 +19,6 @@ class Object
 end
 
 class BasicObject
-  def inspect
-    self
-  end 
-
   def to_ss
     self
   end
@@ -34,4 +30,6 @@ class BasicObject
   def eval(str)
     instance_eval{ instance_eval(str) }
   end
+
+  alias :to_s :to_ss
 end

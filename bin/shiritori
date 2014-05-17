@@ -2,4 +2,4 @@
 
 require 'shiritori'
 
-Shiritori::Main.start
+Shiritori::Main.new.start
