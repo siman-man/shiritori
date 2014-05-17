@@ -17,7 +17,10 @@ module Shiritori
       end
     end
 
-    def update
+    def update(result)
+      @all_method.delete(result.first)
+      @current_object = result.last
+
       begin
         @current_class = @current_object.class
       rescue Exception => ex
@@ -47,19 +50,17 @@ module Shiritori
 
     def run
       loop do
-        show
-        puts "Current Chain Count: #{@chain_count}"
-        $stdout.print "Please input next method > "
-        method = $stdin.gets.chomp
+        show_status
+
+        print "Please input next method > "      
+        command = $stdin.gets.chomp.sub!(/^\./,"")
 
         puts "Exec command #{[@current_object.to_ss, method].join('.')}"
 
-        if result = exec_method_chain(method, @current_object)
+        if result = exec_method_chain(command, @current_object)
           if @all_method.include?(result.first)
-            @all_method.delete(result.first)
-            @current_object = result.last
-            @current_chain << method
-            update
+            update(result)
+            @current_chain << command
           else
             $stdout.puts "Already used method."
           end
@@ -68,7 +69,6 @@ module Shiritori
     end
 
     def exec_method_chain(command, object)
-      command.sub!(/^\./,"")
       method_name = command.scan(METHOD_PATTERN).first.to_sym
       result = [ method_name ]
 

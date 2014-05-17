@@ -6,7 +6,7 @@ module Shiritori
       $stdout.puts "\n"*num
     end
 
-    def show
+    def show_status
       new_line
       chain = "#{@current_chain.join('.')}"
       chain_size = [chain.size+PADDING, 22].max
@@ -29,6 +29,7 @@ module Shiritori
       $stdout.puts "|#{cls.center(cls_size)}|#{obj.center(obj_size)}|"
       $stdout.puts "+#{'-'*(cls_size)}+#{'-'*(obj_size)}+"
       new_line
+      puts "Current Chain Count: #{@chain_count}"
     end
   end
 end
