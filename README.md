@@ -22,6 +22,8 @@ Let's start creation long method chain.
 
 4. Let's enjoy shiritori!
 
+- block syntax can use only '{}', not use 'do - end' syntax.
+- if you want to pass arguments, please enclosed '()'. 
  
 ## Usage
 

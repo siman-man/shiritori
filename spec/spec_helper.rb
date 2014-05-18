@@ -31,6 +31,7 @@ module Helpers
     ope = ope.to_s if ope.is_a?(Symbol)
 
     command = "#{ope}(#{args.join(',')})"
+    puts "self."+command
     expect(check(command, obj||object)).to eq [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
   end
 end
