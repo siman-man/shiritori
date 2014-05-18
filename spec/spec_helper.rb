@@ -22,7 +22,11 @@ module Helpers
 
   def instance_check(ope, *args, obj: object)
 
-    test_obj = ( obj.respond_to?(:dup) )? obj.dup : obj
+    begin
+      test_obj = obj.dup
+    rescue Exception => ex
+      test_obj = obj
+    end
 
     if args.nil?
       expect(check(ope)).to eq [ope.to_sym, eval("#{test_obj.inspect}.#{ope}")]
