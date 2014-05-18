@@ -25,10 +25,10 @@ module Shiritori
 
       begin
         @current_class = @current_object.class
-        @success = true
       rescue Exception => ex
         @current_class = "Undefined"
       end
+      @success = true
       @chain_count += 1
     end
 
