@@ -6,10 +6,10 @@ describe "Shiritori test" do
   describe "TrueClass instance methods" do
     let(:object){ true }
 
-    it { instance_check("&", %Q(false)) }
-    it { instance_check("^", %Q(false)) }
-    it { instance_check("to_s") }
-    it { instance_check("inspect") }
-    it { instance_check("|", %Q(false)) }
+    it { instance_check(:&, %Q(false)) }
+    it { instance_check(:^, %Q(false)) }
+    it { instance_check(:to_s) }
+    it { instance_check(:inspect) }
+    it { instance_check(:|, %Q(false)) }
   end
 end

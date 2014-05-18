@@ -18,6 +18,12 @@ class Object
   end
 end
 
+BasicObject.class_eval do
+  def binding
+    ::Kernel.binding
+  end  
+end
+
 class BasicObject
   def to_ss
     self
@@ -28,7 +34,7 @@ class BasicObject
   end
 
   def eval(str)
-    instance_eval{ instance_eval(str) }
+    ::Kernel.eval(str, binding)
   end
 
   alias :to_s :to_ss

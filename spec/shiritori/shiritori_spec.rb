@@ -30,5 +30,12 @@ describe "Shiritori test" do
       end
       expect(shiritori.current_object).to eq Fixnum
     end
+
+    it "test play 3" do
+      fake_stdin(%w(BasicObject new !=(Object.new) class)) do
+        shiritori.start
+      end
+      expect(shiritori.current_object).to eq TrueClass
+    end
   end
 end

@@ -30,11 +30,9 @@ module Helpers
 
     ope = ope.to_s if ope.is_a?(Symbol)
 
-    if args.nil?
-      expect(check(ope)).to eq [ope.to_sym, eval("#{test_obj.inspect}.#{ope}")]
-    else
-      expect(check("#{ope}(#{args.join(',')})", obj||object)).to eq [ope.scan(METHOD_PATTERN).first.to_sym, eval("#{test_obj.inspect}.#{ope}(#{args.join(',')})")]
-    end
+    command = "#{ope}(#{args.join(',')})"
+    puts "self."+command
+    expect(check(command, obj||object)).to eq [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
   end
 end
  

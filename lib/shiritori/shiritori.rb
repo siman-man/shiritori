@@ -40,7 +40,7 @@ module Shiritori
       begin 
         str = $stdin.gets.chomp
         @current_object = eval(str)
-        @current_chain << @current_object.inspect
+        @current_chain << @current_object.to_ss
       rescue
         new_line
         $stdout.puts "Undefined object error"
