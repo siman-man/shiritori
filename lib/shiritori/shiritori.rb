@@ -30,7 +30,6 @@ module Shiritori
 
     def init
       @all_method = get_all_method
-      p @all_method.include?(:exit)
       @current_object = nil
       @current_class = Object
       @current_chain = []
