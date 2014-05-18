@@ -6,6 +6,9 @@ module Shiritori
     include SearchMethod
     include View
 
+    RED = 31
+    GREEN = 32
+
     EXIT_PATTERN = /(exit|quit)/.freeze
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
@@ -22,6 +25,7 @@ module Shiritori
 
       begin
         @current_class = @current_object.class
+        @success = true
       rescue Exception => ex
         @current_class = "Undefined"
       end
@@ -34,22 +38,39 @@ module Shiritori
       @current_class = Object
       @current_chain = []
       @chain_count = 0
+      @success = false
 
       $stdout.print "Please input first object > "
       begin 
         str = $stdin.gets.chomp
         @current_object = eval(str)
         @current_chain << @current_object.to_ss
-      rescue
+        @success = true
+      rescue Exception => ex
         new_line
         $stdout.puts "Undefined object error"
+        init
       end
       update
     end
 
+    def success?
+      @success
+    end
+
     def run
+
       loop do
         show_status
+
+        if success?
+          puts "\e[#{GREEN}mSuccess!\e[m"
+          @success = false
+        else
+          puts "\e[#{RED}mFailed!\e[m"
+        end
+
+        new_line
 
         print "Please input next method > "      
         command = $stdin.gets
