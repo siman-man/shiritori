@@ -28,6 +28,8 @@ module Helpers
       test_obj = obj
     end
 
+    ope = ope.to_s if ope.is_a?(Symbol)
+
     if args.nil?
       expect(check(ope)).to eq [ope.to_sym, eval("#{test_obj.inspect}.#{ope}")]
     else
