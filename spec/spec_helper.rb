@@ -40,7 +40,7 @@ module Helpers
     ope = ope.to_s if ope.is_a?(Symbol)
 
     command = "#{ope}(#{args.join(',')})"
-    puts "self."+command
+    #puts "self."+command
 
     __self__ = check(command, obj||__instance__)
     other = [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]

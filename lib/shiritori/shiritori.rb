@@ -12,7 +12,7 @@ module Shiritori
     EXIT_PATTERN = /(exit|quit)/.freeze
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
-    def start
+    def start(option = [])
       init
       run
     end
@@ -21,6 +21,7 @@ module Shiritori
       if result
         @all_method.delete(result.first)
         @current_object = result.last
+        @chain_count += 1
       end
 
       begin
@@ -28,8 +29,8 @@ module Shiritori
       rescue Exception => ex
         @current_class = "Undefined"
       end
+
       @success = true
-      @chain_count += 1
     end
 
     def init
@@ -40,17 +41,22 @@ module Shiritori
       @chain_count = 0
       @success = false
 
-      $stdout.print "Please input first object > "
-      begin 
-        str = $stdin.gets.chomp
-        @current_object = eval(str)
-        @current_chain << @current_object.to_ss
-        @success = true
-      rescue Exception => ex
-        new_line
-        $stdout.puts "Undefined object error"
-        init
+      loop do
+        print "Please input first object > "
+
+        begin 
+          str = $stdin.gets.chomp
+          @current_object = eval(str)
+          @current_chain << @current_object.to_ss
+          @success = true
+          break
+        rescue Exception => ex
+          new_line
+          $stdout.puts "Undefined object error"
+          redo
+        end
       end
+
       update
     end
 

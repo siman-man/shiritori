@@ -5,10 +5,6 @@ describe "Shiritori test" do
   let(:__class__){ Symbol }
   let(:__instance__){ :ruby }
 
-  describe "Symbol singleton methods" do
-    it { instance_check(:all_symbols, obj: __class__) }
-  end
-
   describe "Symbol instance methods" do
     it { instance_check(:<=>, %q(:python)) }
     it { instance_check(:==, %q(:ruby)) }
