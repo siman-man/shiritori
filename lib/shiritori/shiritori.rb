@@ -82,15 +82,19 @@ module Shiritori
 
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
-        if result = exec_method_chain(command, @current_object)
-          if @all_method.include?(result.first)
-            update(result)
-            @current_chain << command
-          elsif result.first == :exit
-            break
-          else
-            $stdout.puts "Already used method."
+        begin
+          if result = exec_method_chain(command, @current_object)
+            if @all_method.include?(result.first)
+              update(result)
+              @current_chain << command
+            elsif result.first == :exit
+              break
+            else
+              puts "Already used method."
+            end
           end
+        rescue Exception => ex
+          puts ex.message
         end
       end
     end
