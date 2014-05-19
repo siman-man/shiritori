@@ -28,7 +28,11 @@ module Helpers
   def instance_check(ope, *args, obj: __instance__)
 
     begin
-      test_obj = obj.dup
+      if obj.is_a?(Class)
+        test_obj = obj
+      else
+        test_obj = obj.dup
+      end
     rescue Exception => ex
       test_obj = obj
     end
@@ -36,7 +40,7 @@ module Helpers
     ope = ope.to_s if ope.is_a?(Symbol)
 
     command = "#{ope}(#{args.join(',')})"
-    #puts "self."+command
+    puts "self."+command
 
     __self__ = check(command, obj||__instance__)
     other = [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
