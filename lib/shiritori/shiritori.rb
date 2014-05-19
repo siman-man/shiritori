@@ -1,4 +1,5 @@
 require 'pp'
+require 'readline'
 
 module Shiritori
   class Main
@@ -42,11 +43,16 @@ module Shiritori
       @success = false
 
       loop do
-        print "Please input first object > "
+
+        if Shiritori::ENV == :development
+          print "Please input first object > "
+          command = $stdin.gets
+        else
+          command = Readline.readline("Please input first object > ", true)
+        end
 
         begin 
-          str = $stdin.gets.chomp
-          @current_object = eval(str)
+          @current_object = eval(command.chomp)
           @current_chain << @current_object.to_ss
           @success = true
           break
@@ -78,8 +84,12 @@ module Shiritori
 
         new_line
 
-        print "Please input next method > "      
-        command = $stdin.gets
+        if Shiritori::ENV == :development
+          print "Please input first object > "
+          command = $stdin.gets
+        else
+          command = Readline.readline("Please input first object > ", true)
+        end
 
         break if command.nil?
         redo if command.blank?

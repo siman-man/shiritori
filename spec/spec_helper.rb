@@ -1,6 +1,7 @@
 require 'shiritori'
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
+Shiritori::ENV = :development
 
 module Helpers
   METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/
