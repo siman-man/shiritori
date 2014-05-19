@@ -19,7 +19,7 @@ class Object
 end
 
 BasicObject.class_eval do
-  def binding
+  def __binding__
     ::Kernel.binding
   end  
 end
@@ -34,7 +34,7 @@ class BasicObject
   end
 
   def eval(str)
-    ::Kernel.eval(str, binding)
+    ::Kernel.eval(str, __binding__)
   end
 
   alias :to_s :to_ss

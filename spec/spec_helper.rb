@@ -20,7 +20,7 @@ module Helpers
     main.exec_method_chain( method, obj )
   end
 
-  def instance_check(ope, *args, obj: object)
+  def instance_check(ope, *args, obj: __instance__)
 
     begin
       test_obj = obj.dup
@@ -32,7 +32,7 @@ module Helpers
 
     command = "#{ope}(#{args.join(',')})"
     #puts "self."+command
-    expect(check(command, obj||object)).to eq [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
+    expect(check(command, obj||__instance__)).to eq [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
   end
 end
  

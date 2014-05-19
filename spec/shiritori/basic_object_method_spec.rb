@@ -4,7 +4,7 @@ describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
   describe "BasicObject instance methods" do
-    let(:object){ BasicObject.new }
+    let(:__instance__){ BasicObject.new }
 
     it { instance_check(:!) }
     it { instance_check(:!=, %Q(Object.new)) }

@@ -4,7 +4,7 @@ describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
   describe "Fixnum instance methods" do
-    let(:object){ 16 }
+    let(:__instance__){ 16 }
     let(:same_object){ 16 }
 
     it { instance_check(:to_s) }
@@ -22,13 +22,13 @@ describe "Shiritori test" do
     it { instance_check(:**, %q(7)) }
     it { instance_check(:abs) }
     it { instance_check(:magnitude) }
-    it { instance_check(:==, %Q(#{object})) }
-    it { instance_check(:===, %Q(#{object})) }
-    it { instance_check(:<=>, %Q(#{object})) }
-    it { instance_check(:>, %Q(#{object})) }
-    it { instance_check(:>=, %Q(#{object})) }
-    it { instance_check(:<, %Q(#{object})) }
-    it { instance_check(:<=, %Q(#{object})) }
+    it { instance_check(:==, %Q(#{__instance__})) }
+    it { instance_check(:===, %Q(#{__instance__})) }
+    it { instance_check(:<=>, %Q(#{__instance__})) }
+    it { instance_check(:>, %Q(#{__instance__})) }
+    it { instance_check(:>=, %Q(#{__instance__})) }
+    it { instance_check(:<, %Q(#{__instance__})) }
+    it { instance_check(:<=, %Q(#{__instance__})) }
     it { instance_check(:~) }
     it { instance_check(:&, %q(-1)) }
     it { instance_check(:|, %q(1)) }

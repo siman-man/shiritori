@@ -4,7 +4,7 @@ describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
   describe "String instance methods" do
-    let(:object){ "Ruby" }
+    let(:__instance__){ "Ruby" }
     let(:same_object){ "Ruby" }
     let(:object_int){ "100" }
     let(:object_complex){ "3+3i" }
@@ -15,10 +15,10 @@ describe "Shiritori test" do
     it { instance_check("to_s") }
     it { instance_check("inspect") }
     it { instance_check("hash") }
-    it { instance_check("<=>", %Q('#{object}')) }
-    it { instance_check("==", %Q('#{object}')) }
-    it { instance_check("===", %Q('#{object}')) }
-    it { instance_check("casecmp", %Q('#{object}')) }
+    it { instance_check("<=>", %Q('#{__instance__}')) }
+    it { instance_check("==", %Q('#{__instance__}')) }
+    it { instance_check("===", %Q('#{__instance__}')) }
+    it { instance_check("casecmp", %Q('#{__instance__}')) }
     it { instance_check("+", %Q('#{word}')) }
     it { instance_check("*", %Q(3)) }
     it { instance_check("%", %Q(3)) }

@@ -4,7 +4,7 @@ describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
   describe "NilClass instance methods" do
-    let(:object){ nil }
+    let(:__instance__){ nil }
 
     it { instance_check(:&, %Q(true)) }
     it { instance_check(:^, %Q(true)) }

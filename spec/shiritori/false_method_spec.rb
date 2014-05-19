@@ -4,7 +4,7 @@ describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
   describe "FalseClass instance methods" do
-    let(:object){ false }
+    let(:__instance__){ false }
 
     it { instance_check(:&, %Q(true)) }
     it { instance_check(:^, %Q(true)) }
