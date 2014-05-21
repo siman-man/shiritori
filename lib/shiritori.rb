@@ -5,5 +5,7 @@ require 'shiritori/convert'
 require "shiritori/shiritori"
 
 module Shiritori
-  ENV = :production
+  def self.env
+    :production
+  end
 end

@@ -10,7 +10,7 @@ module Shiritori
     RED = 31
     GREEN = 32
 
-    EXIT_PATTERN = /(exit|quit)/.freeze
+    EXIT_PATTERN = /\A(exit|quit)\Z/.freeze
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
     def start(option = [])
@@ -66,7 +66,7 @@ module Shiritori
     end
 
     def get_command
-      if Shiritori::ENV == :development
+      if Shiritori.env == :development
         print "Please input first object > "
         $stdin.gets
       else
@@ -119,8 +119,13 @@ module Shiritori
       result = [ method_name ]
 
       # puts debug
+      # Bignumがエラーが出る
       # puts "Exec command #{[object.to_ss, command].join('.')}"
       # p method_name
+      # history 機能
+      # 時間制限はつける
+      # メモリ制限もつける
+      # hard modeの追加
 
       case command
       when EXIT_PATTERN
@@ -129,7 +134,9 @@ module Shiritori
         begin
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
-            result << object.instance_eval{ eval("self."+command) }
+
+            #result << object.instance_eval{ eval("self."+command) }
+            result << eval("object."+command)
           end.join
         rescue Exception => ex
           puts ex.message

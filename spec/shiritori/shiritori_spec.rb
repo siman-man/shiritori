@@ -46,5 +46,32 @@ describe "Shiritori test" do
       expect(shiritori.current_object).to eq TrueClass
       expect(shiritori.chain_count).to eq 3
     end
+
+    it "test play 4" do
+      fake_stdin(%w(18446744073709551616 times map collect find{true} gcd(1) succ chr encoding ==(Encoding::UTF_8)
+        to_s slice("s") force_encoding(Encoding::CP932) next next! gsub(/u/){BasicObject} chars take(0) reverse 
+        reverse! <<("HelloRuby") pack('m') upcase downcase upcase! unpack('m') shift split('') first scan(/./) 
+        unshift take_while{false} to_a +([]) join('o') each_line each dup max to_i pred class extend(Module.new) 
+        is_a?(Fixnum) ===(false) inspect concat("false") =~(/[a-z]/) &(1) methods flatten pop intern to_proc arity 
+        |(1) divmod(0.2) min -(-5) zero? singleton_methods sort sort_by{rand} push("HelloRuby") [](-1) downcase! 
+        sub(/r/){binding} swapcase %([]) to_str delete('A-Z') to_f *(1) fdiv(1) /(0.0) -@ abs **(0) round floor ceil 
+        freeze odd? object_id to_r eql?(0) method(:class) call superclass new singleton_class __id__ ord even? 
+        instance_eval{(1..10)} begin div(1) ^(5) ! nil?)) do
+
+        shiritori.start
+      end
+
+      expect(shiritori.current_object).to eq false
+      expect(shiritori.chain_count).to eq 99
+    end
+
+    it "text play 5" do
+      fake_stdin(%w("hello" send(:exit) to_i)) do
+        shiritori.start
+      end
+
+      expect(shiritori.current_object).to eq 0
+      expect(shiritori.chain_count).to eq 1
+    end
   end
 end

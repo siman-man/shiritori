@@ -12,6 +12,10 @@ class NilClass
   end
 end
 
+module Kernel
+  undef_method :exit
+end
+
 class Object
   def to_ss
     inspect
@@ -21,7 +25,7 @@ end
 BasicObject.class_eval do
   def __binding__
     ::Kernel.binding
-  end  
+  end
 end
 
 class BasicObject

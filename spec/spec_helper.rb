@@ -1,12 +1,18 @@
 require 'shiritori'
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
-Shiritori::ENV = :development
+
+module Shiritori
+  def self.env
+    :development
+  end
+end
 
 module Helpers
   METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/
 
   def fake_stdin(args)
+    p args
     begin
       $stdin = StringIO.new
       $stdin.puts(args.shift) until args.empty?
@@ -41,10 +47,11 @@ module Helpers
     ope = ope.to_s if ope.is_a?(Symbol)
 
     command = "#{ope}(#{args.join(',')})"
-    #puts "self."+command
 
     __self__ = check(command, obj||__instance__)
-    other = [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
+
+    #other = [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
+    other = [ope.scan(METHOD_PATTERN).first.to_sym, eval("test_obj."+command) ]
     
     compare_range(__self__, other) if [Range, Enumerator].include?(__self__.last.class)
 
