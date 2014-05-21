@@ -44,12 +44,7 @@ module Shiritori
 
       loop do
 
-        if Shiritori::ENV == :development
-          print "Please input first object > "
-          command = $stdin.gets
-        else
-          command = Readline.readline("Please input first object > ", true)
-        end
+        command = get_command
 
         begin 
           @current_object = eval(command.chomp)
@@ -58,7 +53,7 @@ module Shiritori
           break
         rescue Exception => ex
           new_line
-          $stdout.puts "Undefined object error"
+          puts "\e[#{RED}mUndefined object error\e[m"
           redo
         end
       end
@@ -68,6 +63,15 @@ module Shiritori
 
     def success?
       @success
+    end
+
+    def get_command
+      if Shiritori::ENV == :development
+        print "Please input first object > "
+        $stdin.gets
+      else
+        Readline.readline("Please input first object > ", true)
+      end
     end
 
     def run
@@ -84,12 +88,7 @@ module Shiritori
 
         new_line
 
-        if Shiritori::ENV == :development
-          print "Please input first object > "
-          command = $stdin.gets
-        else
-          command = Readline.readline("Please input first object > ", true)
-        end
+        command = get_command
 
         break if command.nil?
         redo if command.blank?
@@ -110,7 +109,7 @@ module Shiritori
             end
           end
         rescue Exception => ex
-          puts ex.message
+          puts "\e[#{RED}m#{ex.message}\e[m"
         end
       end
     end
