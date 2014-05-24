@@ -41,6 +41,7 @@ module Shiritori
       @current_chain = []
       @chain_count = 0
       @success = false
+      $error_message = nil
 
       loop do
 
@@ -53,7 +54,7 @@ module Shiritori
           break
         rescue Exception => ex
           new_line
-          puts "\e[#{RED}mUndefined object error\e[m"
+          $error_message = "Undefined object error"
           redo
         end
       end
@@ -83,7 +84,7 @@ module Shiritori
           puts "\e[#{GREEN}mSuccess!\e[m"
           @success = false
         else
-          puts "\e[#{RED}mFailed!\e[m"
+          puts "\e[#{RED}mFailed! : #{$error_message}\e[m"
         end
 
         new_line
@@ -105,7 +106,7 @@ module Shiritori
             elsif result.first == :exit
               break
             else
-              puts "Already used method."
+              $error_message = "Already used method."
             end
           end
         rescue Exception => ex
@@ -139,7 +140,7 @@ module Shiritori
             result << eval("object."+command)
           end.join
         rescue Exception => ex
-          puts ex.message
+          $error_message = ex.message
           return false
         end
       end
