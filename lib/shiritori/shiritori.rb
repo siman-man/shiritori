@@ -119,15 +119,6 @@ module Shiritori
       method_name = command.scan(METHOD_PATTERN).first.to_sym
       result = [ method_name ]
 
-      # puts debug
-      # Bignumがエラーが出る
-      # puts "Exec command #{[object.to_ss, command].join('.')}"
-      # p method_name
-      # history 機能
-      # 時間制限はつける
-      # メモリ制限もつける
-      # hard modeの追加
-
       case command
       when EXIT_PATTERN
         return [:exit]
@@ -136,7 +127,6 @@ module Shiritori
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
 
-            #result << object.instance_eval{ eval("self."+command) }
             result << eval("object."+command)
           end.join
         rescue Exception => ex

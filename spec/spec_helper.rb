@@ -50,7 +50,6 @@ module Helpers
 
     __self__ = check(command, obj||__instance__)
 
-    #other = [ope.scan(METHOD_PATTERN).first.to_sym, test_obj.instance_eval{ eval("self."+command) } ]
     other = [ope.scan(METHOD_PATTERN).first.to_sym, eval("test_obj."+command) ]
     
     compare_range(__self__, other) if [Range, Enumerator].include?(__self__.last.class)
