@@ -66,12 +66,12 @@ module Shiritori
       @success
     end
 
-    def get_command
+    def get_command(message = "Please input first object > ")
       if Shiritori.env == :development
-        print "Please input first object > "
+        print message
         $stdin.gets
       else
-        Readline.readline("Please input first object > ", true)
+        Readline.readline(message, true)
       end
     end
 
@@ -89,7 +89,7 @@ module Shiritori
 
         new_line
 
-        command = get_command
+        command = get_command("Please input next method > ")
 
         break if command.nil?
         redo if command.blank?

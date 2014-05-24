@@ -6,6 +6,9 @@ module Shiritori
       $stdout.puts "\n"*num
     end
 
+    def welcome_message
+    end
+
     def show_status
       new_line
       chain = "#{@current_chain.join('.')}"
