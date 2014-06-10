@@ -1,0 +1,9 @@
+:BasicObject:
+ :!: [TrueClass, FalseClass]
+ :!=: [TrueClass, FalseClass]
+ :==: [TrueClass, FalseClass]
+ :__id__: [Integer]
+ :__send__: [Object]
+ :equal?: [TrueClass, FalseClass]
+ :instance_eval: [Object]
+ :instance_exec: [Object]

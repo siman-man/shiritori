@@ -1,0 +1,12 @@
+:NilClass:
+ :&: [FalseClass]
+ :^: [TrueClass, FalseClass]
+ :nil?: [TrueClass, FalseClass]
+ :rationalize: [Rational]
+ :to_a: [Array]
+ :to_c: [Complex]
+ :to_f: [Float]
+ :to_i: [Fixnum]
+ :to_r: [Rational]
+ :to_s: [String]
+ :|: [TrueClass, FalseClass]
