@@ -9,6 +9,9 @@ module Shiritori
     def welcome_message
     end
 
+    def input_message
+    end
+
     def show_status
       new_line
       chain = "#{@current_chain.join('.')}"
