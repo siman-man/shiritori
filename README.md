@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/siman-man/shiritori.svg?branch=master)](https://travis-ci.org/siman-man/shiritori)
+
 # Shiritori
 
 Let's try to create too long method chain!
