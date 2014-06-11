@@ -94,8 +94,6 @@ describe "Shiritori test" do
     it { instance_check("rstrip") }
     it { instance_check("rstrip!") }
     it { instance_check("scan", %Q(/./)) }
-    it { instance_check("scrub") }
-    it { instance_check("scrub!") }
     it { instance_check("setbyte", %Q(0, 67)) }
     it { instance_check("split", %Q(//)) }
     it { instance_check("squeeze") }
@@ -126,5 +124,9 @@ describe "Shiritori test" do
       expect(result.last.to_a).to eq 'A'.upto('Z').to_a
     end
 
+    if RUBY_VERSION >= "2.1.0"
+      it { instance_check("scrub") }
+      it { instance_check("scrub!") }
+    end
   end
 end

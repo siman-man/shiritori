@@ -38,10 +38,12 @@ describe "Shiritori test" do
     it { instance_check(:>>, %q(3)) }
     it { instance_check(:to_f) }
     it { instance_check(:size) }
-    it { instance_check(:bit_length) }
     it { instance_check(:zero?) }
     it { instance_check(:odd?) }
     it { instance_check(:even?) }
     it { instance_check(:succ) }
+    if RUBY_VERSION >= "2.1.0"
+      it { instance_check(:bit_length) }
+    end
   end
 end
