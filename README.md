@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/siman-man/shiritori.svg?branch=master)](https://travis-ci.org/siman-man/shiritori)
+[![Code Climate](https://codeclimate.com/github/siman-man/shiritori.png)](https://codeclimate.com/github/siman-man/shiritori)
 
 # Shiritori
 
