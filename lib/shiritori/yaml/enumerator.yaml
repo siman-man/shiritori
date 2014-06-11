@@ -1,0 +1,11 @@
+:Enumerator:
+  :each: [Object]
+  :feed: [NilClass]
+  :next: [Object]
+  :next_values: [Array]
+  :peek: [Object]
+  :peek_values: [Array]
+  :rewind: [Enumerator]
+  :size: [Integer,Float::INFINITY,NilClass]
+  :with_index: [Object, Enumerator]
+  :with_object: [Object, Enumerator]
