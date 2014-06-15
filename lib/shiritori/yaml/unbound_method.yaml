@@ -1,0 +1,13 @@
+:UnboundMethod:
+  :==: [TrueClass,FalseClass]
+  :eql?: [TrueClass,FalseClass]
+  :arity: [Integer]
+  :bind: [Method]
+  :clone: [Method]
+  :hash: [Integer]
+  :inspect: [String]
+  :to_s: [String]
+  :name: [Symbol]
+  :owner: [Class,Module]
+  :parameters: [Array]
+  :source_location: [Array,NilClass]
