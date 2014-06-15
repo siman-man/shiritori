@@ -7,6 +7,7 @@ module Shiritori
     include SearchMethod
     include View
 
+    # ColorCode
     RED = 31
     GREEN = 32
 
@@ -14,6 +15,7 @@ module Shiritori
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
     def start(option = [])
+      welcome_message
       init
       run
     end
@@ -36,12 +38,10 @@ module Shiritori
 
     def init
       @all_method = get_all_method
-      @current_object = nil
       @current_class = Object
       @current_chain = []
       @chain_count = 0
       @success = false
-      $error_message = nil
 
       loop do
 
@@ -53,8 +53,7 @@ module Shiritori
           @success = true
           break
         rescue Exception => ex
-          new_line
-          $error_message = "Undefined object error"
+          puts "\e[#{RED}mUndefined object error.\e[m"
           redo
         end
       end
@@ -64,6 +63,15 @@ module Shiritori
 
     def success?
       @success
+    end
+
+    def check_success
+      if success?
+        puts "\e[#{GREEN}mSuccess!\e[m"
+        @success = false
+      else
+        puts "\e[#{RED}mFailed! : #{$error_message}\e[m"
+      end
     end
 
     def get_command(message = "Please input first object > ")
@@ -80,12 +88,7 @@ module Shiritori
       loop do
         show_status
 
-        if success?
-          puts "\e[#{GREEN}mSuccess!\e[m"
-          @success = false
-        else
-          puts "\e[#{RED}mFailed! : #{$error_message}\e[m"
-        end
+        check_success
 
         new_line
 
@@ -99,15 +102,17 @@ module Shiritori
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
         begin
-          if result = exec_method_chain(command, @current_object)
-            if @all_method.include?(result.first)
-              update(result)
-              @current_chain << command
-            elsif result.first == :exit
-              break
-            else
-              $error_message = "Already used method."
-            end
+          result = exec_method_chain(command, @current_object)
+          
+          redo unless result
+          break if result.first == :exit
+
+          if @all_method.include?(result.first)
+            update(result)
+            @current_chain << command
+          else
+            $error_message = "#{result.first} is already used."
+            raise Shiritori::UseSameMethodError
           end
         rescue Exception => ex
           puts "\e[#{RED}m#{ex.message}\e[m"

@@ -7,6 +7,12 @@ module Shiritori
     end
 
     def welcome_message
+      width = 50
+      puts "+#{'-'*width}+"
+      puts "|#{' '*width}|"
+      puts "|#{"Welcome to the Shiritori!".center(width)}|"
+      puts "|#{' '*width}|"
+      puts "+#{'-'*width}+"
     end
 
     def input_message

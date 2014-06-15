@@ -7,4 +7,10 @@ module Shiritori
       "Can't use same method."
     end
   end
+
+  class UndefinedObjectError < ShiritoriError
+    def message
+      "Undefined Object"
+    end
+  end
 end
