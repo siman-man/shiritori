@@ -1,4 +1,4 @@
-Proc:
+:Proc:
   :[*arg]: [NilClass]
   :call: [NilClass]
   :===: [NilClass]

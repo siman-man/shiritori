@@ -1,5 +1,5 @@
 :Binding:
   :eval: [Object]
-  :local_variable_defined?: [TrueClass|FalseClass]
+  :local_variable_defined?: [TrueClass,FalseClass]
   :local_variable_get: [Object]
   :local_variable_set: [Object]

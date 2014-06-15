@@ -1,4 +1,4 @@
-MatchData:
+:MatchData:
   :eql?: [TrueClass,FalseClass]
   :==: [TrueClass,FalseClass]
   :[]: [String,Array,NilClass]

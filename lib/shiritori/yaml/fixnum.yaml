@@ -1,4 +1,4 @@
-Fixnum:
+:Fixnum:
   :%: [Fixnum,Bignum,Float]
   :modulo: [Fixnum,Bignum,Float]
   :&: [Fixnum,Bignum]

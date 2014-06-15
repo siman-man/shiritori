@@ -1,4 +1,4 @@
-Regexp:
+:Regexp:
   :escape: [String]
   :quote: [String]
   :last_match: [MatchData,String,NilClass]
