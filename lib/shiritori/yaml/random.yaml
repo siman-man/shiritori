@@ -1,0 +1,4 @@
+Random:
+  :==: [TrueClass,FalseClass]
+  :bytes: [String]
+  :seed: [Integer]
