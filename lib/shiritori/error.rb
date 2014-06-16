@@ -4,13 +4,13 @@ module Shiritori
 
   class UseSameMethodError < ShiritoriError
     def message
-      "Can't use same method."
+      %q(Can't use same method.)
     end
   end
 
   class UndefinedObjectError < ShiritoriError
     def message
-      "Undefined Object"
+      'Undefined Object'
     end
   end
 end

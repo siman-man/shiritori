@@ -29,8 +29,8 @@ module Shiritori
 
       begin
         @current_class = @current_object.class
-      rescue Exception => ex
-        @current_class = "Undefined"
+      rescue NoMethodError => ex
+        @current_class = 'Undefined'
       end
 
       @success = true
@@ -47,13 +47,14 @@ module Shiritori
 
         command = get_command
 
-        begin 
+        begin
           @current_object = eval(command.chomp)
           @current_chain << @current_object.to_ss
           @success = true
           break
         rescue Exception => ex
-          puts "\e[#{RED}mUndefined object error.\e[m"
+          $error_message = ex.message
+          puts "\e[#{RED}m#{$error_message}\e[m"
           redo
         end
       end
@@ -61,12 +62,8 @@ module Shiritori
       update
     end
 
-    def success?
-      @success
-    end
-
     def check_success
-      if success?
+      if @success
         puts "\e[#{GREEN}mSuccess!\e[m"
         @success = false
       else
@@ -74,7 +71,7 @@ module Shiritori
       end
     end
 
-    def get_command(message = "Please input first object > ")
+    def get_command(message = 'Please input first object > ')
       if Shiritori.env == :development
         print message
         $stdin.gets
@@ -84,7 +81,6 @@ module Shiritori
     end
 
     def run
-
       loop do
         show_status
 
@@ -92,12 +88,12 @@ module Shiritori
 
         new_line
 
-        command = get_command("Please input next method > ")
+        command = get_command('Please input next method > ')
 
         break if command.nil?
         redo if command.blank?
 
-        command = command.chomp.sub(/^\./,"")
+        command = command.chomp.sub(/^\./, '')
 
         puts "Exec command #{[@current_object.to_ss, command].join('.')}"
 
@@ -122,7 +118,7 @@ module Shiritori
 
     def exec_method_chain(command, object)
       method_name = command.scan(METHOD_PATTERN).first.to_sym
-      result = [ method_name ]
+      result = [method_name]
 
       case command
       when EXIT_PATTERN
@@ -132,7 +128,7 @@ module Shiritori
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
 
-            result << eval("object."+command)
+            result << eval('object.' + command)
           end.join
         rescue Exception => ex
           $error_message = ex.message

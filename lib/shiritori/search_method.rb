@@ -3,7 +3,7 @@ module Shiritori
     UNUSE_METHOD = [:exit]
 
     def get_all_method
-      @check_list = Hash.new(false)
+      @check_list = {}
       @method_list = []
 
       scan_method
@@ -12,17 +12,15 @@ module Shiritori
     end
 
     def singleton(klass)
-      class << klass; self end 
-    end 
+      class << klass; self end
+    end
 
     def scan_method(klass = BasicObject)
       @check_list[klass] = true
       @method_list |= klass.instance_methods
 
-      ObjectSpace.each_object(singleton(klass)) do |subclass| 
-        if klass != subclass
-          scan_method(subclass) unless @check_list[subclass]
-        end 
+      ObjectSpace.each_object(singleton(klass)) do |subclass|
+        scan_method(subclass) if klass != subclass && @check_list[subclass].nil?
       end
     end
   end

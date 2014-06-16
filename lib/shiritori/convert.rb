@@ -2,13 +2,13 @@ class String
   BLANK_PATTERN = /\A\s*\z/
   
   def blank?
-    BLANK_PATTERN === self
+    BLANK_PATTERN == self
   end
 end
 
 class NilClass
   def to_ss
-    "nil"
+    'nil'
   end
 end
 
@@ -41,5 +41,5 @@ class BasicObject
     ::Kernel.eval(str, __binding__)
   end
 
-  alias :to_s :to_ss
+  alias_method :to_s, :to_ss
 end
