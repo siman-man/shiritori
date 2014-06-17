@@ -1,6 +1,7 @@
 :TrueClass:
- :&: [TrueClass, FalseClass]
- :^: [TrueClass, FalseClass]
- :to_s: [String]
- :inspect: [String]
- :|: [TrueClass, FalseClass]
+  :instance_method:
+    :&: [TrueClass, FalseClass]
+    :^: [TrueClass, FalseClass]
+    :to_s: [String]
+    :inspect: [String]
+    :|: [TrueClass, FalseClass]

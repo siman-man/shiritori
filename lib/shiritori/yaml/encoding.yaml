@@ -1,8 +1,9 @@
  :Encoding:
-  :ascii_compatible?: [TrueClass,FalseClass]
-  :dummy?: [TrueClass,FalseClass]
-  :inspect: [String]
-  :name: [String]
-  :to_s: [String]
-  :names: [String]
-  :replicate: [Encoding]
+  :instance_method:
+    :ascii_compatible?: [TrueClass,FalseClass]
+    :dummy?: [TrueClass,FalseClass]
+    :inspect: [String]
+    :name: [String]
+    :to_s: [String]
+    :names: [String]
+    :replicate: [Encoding]

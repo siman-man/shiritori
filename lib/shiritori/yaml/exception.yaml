@@ -1,8 +1,9 @@
 :Exception:
-  :==: [TrueClass,FalseClass]
-  :backtrace: [Array, NilClass]
-  :cause: [Exception,NilClass]
-  :inspect: [String]
-  :message: [String]
-  :to_s: [String]
-  :set_backtrace: [NilClass,String,Array]
+  :instance_method:
+    :==: [TrueClass,FalseClass]
+    :backtrace: [Array, NilClass]
+    :cause: [Exception,NilClass]
+    :inspect: [String]
+    :message: [String]
+    :to_s: [String]
+    :set_backtrace: [NilClass,String,Array]

@@ -1,4 +1,6 @@
 :Random:
-  :==: [TrueClass,FalseClass]
-  :bytes: [String]
-  :seed: [Integer]
+  :instance_method:
+    :==: [TrueClass,FalseClass]
+    :bytes: [String]
+    :seed: [Integer]
+    
