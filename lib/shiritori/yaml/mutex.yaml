@@ -1,0 +1,11 @@
+:Mutex:
+  :singleton_method:
+    :new: [Mutex]
+  :instance_method:
+    :lock: [Mutex]
+    :locked?: [TrueClass,FalseClass]
+    :owned?: [TrueClass,FalseClass]
+    :sleep: [Mutex]
+    :synchronize: [Object]
+    :try_lock: [TrueClass,FalseClass]
+    :unlock: [Mutex]
