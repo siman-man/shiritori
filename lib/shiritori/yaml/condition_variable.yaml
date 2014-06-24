@@ -1,0 +1,7 @@
+:ConditionVariable:
+  :singleton_method:
+    :new: [ConditionVariable]
+  :instance_method:
+    :broadcast: [Array]
+    :signal: [Thread,NilClass]
+    :wait: [ConditionVariable]
