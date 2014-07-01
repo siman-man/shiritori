@@ -1,4 +1,5 @@
 :String:
+  :singleton_method:
   :instance_method:
     :to_s: [String]
     :slice: [String, NilClass]

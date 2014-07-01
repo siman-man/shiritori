@@ -1,4 +1,5 @@
 :Range:
+  :singleton_method:
   :instance_method:
     :==: [TrueClass, FalseClass]
     :===: [TrueClass, FalseClass]

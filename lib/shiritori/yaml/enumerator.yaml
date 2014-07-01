@@ -1,4 +1,5 @@
 :Enumerator:
+  :singleton_method:
   :instance_method:
     :each: [Object]
     :feed: [NilClass]
@@ -7,6 +8,6 @@
     :peek: [Object]
     :peek_values: [Array]
     :rewind: [Enumerator]
-    :size: [Integer,Float::INFINITY,NilClass]
+    :size: [Integer,INFINITY,NilClass]
     :with_index: [Object, Enumerator]
     :with_object: [Object, Enumerator]

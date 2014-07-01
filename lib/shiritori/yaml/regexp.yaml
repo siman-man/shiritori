@@ -1,4 +1,5 @@
 :Regexp:
+  :singleton_method:
   :instance_method:
     :escape: [String]
     :quote: [String]
@@ -21,4 +22,3 @@
     :source: [String]
     :to_s: [String]
     :~: [Fixnum,NilClass]
-    

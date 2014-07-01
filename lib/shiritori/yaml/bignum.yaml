@@ -1,4 +1,5 @@
 :Bignum:
+  :singleton_method:
   :instance_method:
     :%: [Fixnum,Bignum,Float]
     :modulo: [Fixnum,Bignum,Float]

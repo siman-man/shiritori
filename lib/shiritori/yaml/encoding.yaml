@@ -1,4 +1,5 @@
  :Encoding:
+  :singleton_method:
   :instance_method:
     :ascii_compatible?: [TrueClass,FalseClass]
     :dummy?: [TrueClass,FalseClass]

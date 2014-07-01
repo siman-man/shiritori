@@ -1,4 +1,105 @@
 :Array:
+  :singleton:
+    :[]: [Array]
+    :try_convert: [Array, NilClass]
+    :allocate: [Array]
+    :new: [Array]
+    :superclass: [Object]
+    :freeze: [Array]
+    :===: [TrueClass, FalseClass]
+    :==: [TrueClass, FalseClass]
+    :<=>: [Fixnum, NilClass]
+    :<: [TrueClass, FalseClass]
+    :<=: [TrueClass, FalseClass]
+    :>: [TrueClass, FalseClass]
+    :>=: [TrueClass, FalseClass]
+    :to_s: [String]
+    :inspect: [String]
+    :included_modules: [Array]
+    :include?: [TrueClass, FalseClass]
+    :name: [String]
+    :ancestors: [Array]
+    :instance_methods: [Array]
+    :public_instance_methods: [Array]
+    :protected_instance_methods: [Array]
+    :private_instance_methods: [Array]
+    :constants: [Array]
+    :const_get: [AnyObject]
+    :const_set: [AnyObject]
+    :const_defined?: [TrueClass, FalseClass]
+    :class_variables: [Array]
+    :remove_class_variable: [AnyObject]
+    :class_variable_get: [AnyObject]
+    :class_variable_set: [AnyObject]
+    :class_variable_defined?: [TrueClass, FalseClass]
+    :public_constant: [self]
+    :private_constant: [self]
+    :module_exec: [AnyObject]
+    :class_exec: [AnyObject]
+    :module_eval: [AnyObject]
+    :class_eval: [AnyObject]
+    :method_defined?: [TrueClass, FalseClass]
+    :public_method_defined?: [TrueClass, FalseClass]
+    :private_method_defined?: [TrueClass, FalseClass]
+    :protected_method_defined?: [TrueClass, FalseClass]
+    :public_class_method: [self]
+    :private_class_method: [self]
+    :autoload?: [NilClass]
+    :instance_method: [UnboundMethod]
+    :public_instance_method: true
+    :psych_yaml_as: true
+    :yaml_as: true
+    :psych_to_yaml: true
+    :to_yaml: true
+    :to_yaml_properties: true
+    :nil?: true
+    :=~: true
+    :!~: true
+    :eql?: true
+    :hash: true
+    :class: true
+    :singleton_class: true
+    :clone: true
+    :dup: true
+    :taint: true
+    :tainted?: true
+    :untaint: true
+    :untrust: true
+    :untrusted?: true
+    :trust: true
+    :frozen?: true
+    :methods: true
+    :singleton_methods: true
+    :protected_methods: true
+    :private_methods: true
+    :public_methods: true
+    :instance_variables: true
+    :instance_variable_get: true
+    :instance_variable_set: true
+    :instance_variable_defined?: true
+    :remove_instance_variable: true
+    :instance_of?: true
+    :kind_of?: true
+    :is_a?: true
+    :tap: true
+    :send: true
+    :public_send: true
+    :respond_to?: true
+    :extend: true
+    :display: true
+    :method: true
+    :public_method: true
+    :define_singleton_method: true
+    :object_id: true
+    :to_enum: true
+    :enum_for: true
+    :equal?: true
+    :!: true
+    :!=: true
+    :instance_eval: true
+    :instance_exec: true
+    :__send__: true
+    :__id__: true
   :instance_method:
     :&: [Array]
     :*: [Array,String]
@@ -13,7 +114,7 @@
     :bsearch: [Object,NilClass]
     :clear: [Array]
     :clone: [Array]
-    :dup: [Array}
+    :dup: [Array]
     :collect!: [Array,Enumerator]
     :map!: [Array,Enumerator]
     :combination: [Array,Enumerator]
@@ -50,7 +151,7 @@
     :permutation: [Array,Enumerator]
     :pop: [Object,NilClass,Array]
     :product: [Array]
-    :push: [Array}
+    :push: [Array]
     :rassoc: [Array,NilClass]
     :repeated_combination: [Array,Enumerator]
     :repeated_permutation: [Array,Enumerator]

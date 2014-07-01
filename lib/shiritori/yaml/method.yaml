@@ -1,4 +1,5 @@
 :Method:
+  :singleton_method:
   :instance_method:
     :==: [TrueClass,FalseClass]
     :eql?: [TrueClass,FalseClass]

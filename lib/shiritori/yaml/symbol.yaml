@@ -1,4 +1,5 @@
 :Symbol:
+  :singleton_method:
   :instance_method:
     :<=>: [Fixnum]
     :==: [TrueClass, FalseClass]

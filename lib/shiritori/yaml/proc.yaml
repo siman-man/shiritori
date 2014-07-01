@@ -1,4 +1,5 @@
 :Proc:
+  :singleton_method:
   :instance_method:
     :[*arg]: [NilClass]
     :call: [NilClass]

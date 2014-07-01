@@ -1,6 +1,6 @@
 :Random:
+  :singleton_method:
   :instance_method:
     :==: [TrueClass,FalseClass]
     :bytes: [String]
     :seed: [Integer]
-    
