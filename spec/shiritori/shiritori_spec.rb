@@ -22,6 +22,32 @@ describe "Shiritori test" do
     end
   end
 
+  describe 'Timeout' do
+    context 'Timeout::Error occur' do
+      it 'sleep method' do
+        fake_stdin(%w(3 instance_eval{sleep(3)} to_s nil?)) do
+          shiritori.start
+        end
+
+        expect(shiritori.current_object).to eq false
+        expect(shiritori.chain_count).to eq 2
+        expect(shiritori.error_count).to eq 1
+      end
+    end
+
+    context 'Timeout::Error not occur' do
+      it 'sleep method' do
+        fake_stdin(%w(3 instance_eval{sleep(0)} to_s)) do
+          shiritori.start
+        end
+
+        expect(shiritori.current_object).to eq '0'
+        expect(shiritori.chain_count).to eq 2
+        expect(shiritori.error_count).to eq 0
+      end
+    end
+  end
+
   describe "Example" do
     it "test play 1" do
       fake_stdin(%w(3 next to_s *(5) chars first instance_eval{(1..10)} each{|n|n*100} map{|n|n+100} inject(:+) class)) do

@@ -1,4 +1,6 @@
 require 'shiritori'
+require 'timeout'
+require 'ripper'
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
 
@@ -12,7 +14,6 @@ module Helpers
   METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/
 
   def fake_stdin(args)
-    p args
     begin
       $stdin = StringIO.new
       $stdin.puts(args.shift) until args.empty?

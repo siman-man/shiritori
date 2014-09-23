@@ -43,5 +43,8 @@ module Shiritori
       new_line
       puts "Current Chain Count: #{@chain_count}"
     end
+
+    def show_result
+    end
   end
 end

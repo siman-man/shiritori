@@ -3,7 +3,7 @@ require 'readline'
 
 module Shiritori
   class Main
-    attr_reader :current_object, :chain_count
+    attr_reader :current_object, :chain_count, :error_count
     include SearchMethod
     include View
 
@@ -14,10 +14,20 @@ module Shiritori
     EXIT_PATTERN = /\A(exit|quit)\Z/.freeze
     METHOD_PATTERN = /[\w|\?|\>|\<|\=|\!|\[|\[|\]|\*|\/|\+|\-|\^|\~|\@|\%|\&|]+/.freeze
 
+    # timelimit is 1 second
+    TIME_LIMIT = 1
+
     def start(option = [])
       welcome_message
-      init
-      run
+
+      begin
+        init
+        run
+      rescue Exception => ex
+        puts ex.message
+      ensure
+        show_result
+      end
     end
 
     def update(result = nil)
@@ -41,7 +51,11 @@ module Shiritori
       @current_class = Object
       @current_chain = []
       @chain_count = 0
+      @error_count = 0
       @success = false
+
+      require 'timeout'
+      require 'ripper'
 
       loop do
 
@@ -67,6 +81,7 @@ module Shiritori
         puts "\e[#{GREEN}mSuccess!\e[m"
         @success = false
       else
+        @error_count += 1
         puts "\e[#{RED}mFailed! : #{$error_message}\e[m"
       end
     end
@@ -90,7 +105,7 @@ module Shiritori
 
         command = get_command('Please input next method > ')
 
-        break if command.nil?
+        break if command.nil? 
         redo if command.blank?
 
         command = command.chomp.sub(/^\./, '')
@@ -128,7 +143,9 @@ module Shiritori
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
 
-            result << eval('object.' + command)
+            timeout(TIME_LIMIT) do
+              result << eval('object.' + command)
+            end
           end.join
         rescue Exception => ex
           $error_message = ex.message

@@ -13,7 +13,7 @@ class NilClass
 end
 
 module Kernel
-  undef_method :exit
+  undef_method :exit, :abort
 end
 
 class Object
