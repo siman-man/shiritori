@@ -48,6 +48,17 @@ describe "Shiritori test" do
     end
   end
 
+  describe "Blank Input" do
+    it 'should blank' do
+      fake_stdin(%W("\n" 3 to_s)) do
+        shiritori.start
+      end
+
+      expect(shiritori.current_object).to eq '3'
+      expect(shiritori.chain_count).to eq 1
+    end
+  end
+
   describe "Example" do
     it "test play 1" do
       fake_stdin(%w(3 next to_s *(5) chars first instance_eval{(1..10)} each{|n|n*100} map{|n|n+100} inject(:+) class)) do
@@ -88,6 +99,7 @@ describe "Shiritori test" do
       end
 
       expect(shiritori.current_object).to eq false
+      expect(shiritori.error_count).to eq 0
       expect(shiritori.chain_count).to eq 99
     end
 

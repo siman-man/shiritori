@@ -1,5 +1,5 @@
 class String
-  BLANK_PATTERN = /\A\s*\z/
+  BLANK_PATTERN = /^\s*$/
   
   def blank?
     BLANK_PATTERN == self

@@ -1,8 +1,10 @@
 require 'shiritori'
 require 'timeout'
 require 'ripper'
+require 'coveralls'
 
 $LOAD_PATH << File.expand_path('../../lib', __FILE__)
+Coveralls.wear!
 
 module Shiritori
   def self.env

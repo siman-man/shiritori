@@ -60,6 +60,7 @@ module Shiritori
       loop do
 
         command = get_command
+        redo if command.empty?
 
         begin
           @current_object = eval(command.chomp)
