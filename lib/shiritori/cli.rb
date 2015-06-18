@@ -1,7 +1,8 @@
 module Shiritori
   class CLI < Thor
-    desc "hello NAME", "say hello to NAME"
-    def hello(name)
+    desc "start", "Start GAME!"
+    def start
+      Main.new.start
     end
   end
 end

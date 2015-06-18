@@ -1,8 +1,11 @@
+require "thor"
+
 require "shiritori/version"
 require "shiritori/search_method"
 require "shiritori/error"
-require 'shiritori/view'
-require 'shiritori/convert'
+require "shiritori/view"
+require "shiritori/convert"
+require "shiritori/cli"
 require "shiritori/shiritori"
 
 module Shiritori

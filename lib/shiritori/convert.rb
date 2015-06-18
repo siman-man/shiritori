@@ -2,7 +2,7 @@ class String
   BLANK_PATTERN = /^\s*$/
   
   def blank?
-    BLANK_PATTERN == self
+    self == BLANK_PATTERN
   end
 end
 
@@ -13,7 +13,8 @@ class NilClass
 end
 
 module Kernel
-  undef_method :exit, :abort
+  undef_method :exit
+  undef_method :abort
 end
 
 class Object

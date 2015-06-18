@@ -2,4 +2,4 @@
 
 require 'shiritori'
 
-Shiritori::Main.new.start(ARGV)
+Shiritori::CLI.start(ARGV)

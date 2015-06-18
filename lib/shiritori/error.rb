@@ -1,6 +1,5 @@
 module Shiritori
-  class ShiritoriError < Exception
-  end
+  class ShiritoriError < Exception; end
 
   class UseSameMethodError < ShiritoriError
     def message
