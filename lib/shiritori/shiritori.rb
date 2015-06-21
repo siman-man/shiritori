@@ -34,6 +34,7 @@ module Shiritori
     def update(action: nil, object: nil)
       if action
         @all_method.delete(action)
+        @use_method_list << action
         @current_object = object
         @chain_count += 1
       end
@@ -185,7 +186,7 @@ module Shiritori
       else
         puts "\e[#{RED}mOh.. Sory, help command is only exist easy mode.\e[m"
       end
-      
+
       new_line
     end
   end
