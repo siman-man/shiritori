@@ -41,6 +41,7 @@ good
 ```
 Please input next method > +(5)
 Exec command 3.+(5)
+```
  
 ## Usage
 
