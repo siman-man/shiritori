@@ -46,7 +46,7 @@ Exec command 3.+(5)
 ## Usage
 
 ```
-% shiritori                            
+% shiritori start                   
 Please input first object > "Hello"
 
 +----------------------+
