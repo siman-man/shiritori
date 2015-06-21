@@ -28,6 +28,19 @@ Let's start creation long method chain.
 
 - block syntax can use only '{}', not use 'do - end' syntax.
 - if you want to pass arguments, please enclosed '()'. 
+
+bad
+
+```
+Please input next method > +5
+Exec command 3.+5
+```
+
+good
+
+```
+Please input next method > +(5)
+Exec command 3.+(5)
  
 ## Usage
 
@@ -79,7 +92,6 @@ Exec command ["H", "e", "l", "l", "o"].first
 
 Please input next method >
 ```
-
 
 ## Contributing
 

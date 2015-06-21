@@ -2,7 +2,7 @@ class String
   BLANK_PATTERN = /^\s*$/
   
   def blank?
-    self == BLANK_PATTERN
+    self.size == 0 or self == BLANK_PATTERN
   end
 end
 

@@ -26,16 +26,16 @@ module Helpers
     end
   end
 
-  def check( method, obj = same_object )
-    main.exec_method_chain( method, obj )
+  def check(method, obj = same_object)
+    main.exec_method_chain(method, obj)
   end
 
-  def compare_range( a, b )
+  def compare_range(a, b)
     a[1] = a[1].to_a
     b[1] = b[1].to_a
   end
 
-  def instance_check(ope, *args, obj: __instance__)
+  def instance_check(operation, *args, obj: __instance__)
 
     begin
       if obj.is_a?(Class)
@@ -47,17 +47,17 @@ module Helpers
       test_obj = obj
     end
 
-    ope = ope.to_s if ope.is_a?(Symbol)
+    operation = operation.to_s if operation.is_a?(Symbol)
 
-    command = "#{ope}(#{args.join(',')})"
+    command = "#{operation}(#{args.join(',')})"
 
-    __self__ = check(command, obj||__instance__)
+    __result__ = check(command, obj||__instance__)
 
-    other = [ope.scan(METHOD_PATTERN).first.to_sym, eval("test_obj."+command) ]
-    
-    compare_range(__self__, other) if [Range, Enumerator].include?(__self__.last.class)
+    __expect__ = [operation.scan(METHOD_PATTERN).first.to_sym, eval("test_obj."+command) ]
 
-    expect(__self__).to eq other
+    compare_range(__result__, __expect__) if [Range, Enumerator].include?(__result__.last.class)
+
+    expect(__result__).to eq __expect__
   end
 end
  

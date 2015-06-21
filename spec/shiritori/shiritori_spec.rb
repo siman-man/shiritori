@@ -24,7 +24,18 @@ describe "Shiritori test" do
 
   describe 'Timeout' do
     context 'Timeout::Error occur' do
-      it 'sleep method' do
+      it 'first object sleep' do
+        fake_stdin(%w(sleep)) do
+          shiritori.start
+        end
+
+        expect(shiritori.current_object).to eq nil
+        expect(shiritori.error_count).to eq 0
+      end
+    end
+
+    context 'Timeout::Error occur' do
+      it 'sleep method limit' do
         fake_stdin(%w(3 instance_eval{sleep(3)} to_s nil?)) do
           shiritori.start
         end
