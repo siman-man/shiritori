@@ -4,20 +4,16 @@ module Shiritori
 
     def get_all_method
       @check_list = {}
-      @method_list = []
-
-      scan_method
+      @method_list = scan_methods
 
       @method_list - UNUSE_METHOD
     end
 
-    def scan_method(klass = BasicObject)
-      @check_list[klass] = true
-      @method_list |= klass.instance_methods
+    def scan_methods(klass = BasicObject)
+      klasses = ObjectSpace.each_object(Class).to_a
+      klasses |= klasses.map(&:singleton_class)
 
-      ObjectSpace.each_object(Class) do |subclass|
-        scan_method(subclass) if klass != subclass && @check_list[subclass].nil?
-      end
+      klasses.map(&:instance_methods).inject(&:|)
     end
   end
 end
