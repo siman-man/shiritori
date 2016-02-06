@@ -3,7 +3,7 @@ require 'readline'
 
 module Shiritori
   class Main
-    attr_reader :current_object, :chain_count, :error_count, :mode, :use_method_list
+    attr_reader :current_object, :chain_count, :error_count, :mode, :used_method_list
     include SearchMethod
     include View
 
@@ -34,7 +34,7 @@ module Shiritori
     def update(action: nil, object: nil)
       if action
         @all_method.delete(action)
-        @use_method_list << action
+        @used_method_list << action
         @current_object = object
         @chain_count += 1
       end
@@ -53,7 +53,7 @@ module Shiritori
       @all_method = get_all_method
       @current_class = Object
       @current_chain = []
-      @use_method_list = []
+      @used_method_list = []
       @chain_count = 0
       @error_count = 0
       @success = false
@@ -68,7 +68,7 @@ module Shiritori
 
         begin
           Thread.new do
-            timeout(TIME_LIMIT) do
+            Timeout.timeout(TIME_LIMIT) do
               @current_object = eval(command.chomp)
             end
           end.join
@@ -116,7 +116,13 @@ module Shiritori
         command = command.chomp.sub(/^\./, '')
 
         begin
-          result = exec_method_chain(command, current_object)
+          begin 
+            object = Marshal.load(Marshal.dump(current_object))
+          rescue Exception => ex
+            object = current_object
+          end
+
+          result = try_method_chain(command, object)
           
           redo unless result
 
@@ -132,7 +138,7 @@ module Shiritori
             puts "Exec command #{[@current_object.to_ss, command].join('.')}"
             @current_chain << command
             update(action: action, object: object)
-          else
+          elsif used_method_list[action]
             $error_message = "#{action} is already used."
             raise Shiritori::UseSameMethodError
           end
@@ -145,7 +151,7 @@ module Shiritori
       end
     end
 
-    def exec_method_chain(command, object)
+    def try_method_chain(command, object)
       method_name = command.scan(METHOD_PATTERN).first.to_sym
       result = [method_name]
 
@@ -159,7 +165,7 @@ module Shiritori
           Thread.new do
             raise NoMethodError unless object.respond_to?(method_name)
 
-            timeout(TIME_LIMIT) do
+            Timeout.timeout(TIME_LIMIT) do
               result << eval('object.' + command)
             end
           end.join
@@ -177,7 +183,7 @@ module Shiritori
 
     private
     def help_me(current_object)
-      can_use_methods = current_object.methods - use_method_list
+      can_use_methods = current_object.methods - used_method_list
 
       new_line
 
