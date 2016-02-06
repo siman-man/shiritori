@@ -27,7 +27,7 @@ module Helpers
   end
 
   def check(method, obj = same_object)
-    main.exec_method_chain(method, obj)
+    main.try_method_chain(method, obj)
   end
 
   def compare_range(a, b)
