@@ -8,7 +8,4 @@ describe "Shiritori test" do
   describe "Random singleton methods" do
     it { instance_check(:new, %q(0), obj: __class__) }
   end
-
-  describe "Random instance methods" do  
-  end
 end
