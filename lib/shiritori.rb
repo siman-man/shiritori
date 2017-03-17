@@ -1,5 +1,3 @@
-require "thor"
-
 require "shiritori/version"
 require "shiritori/search_method"
 require "shiritori/error"

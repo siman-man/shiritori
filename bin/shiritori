@@ -1,5 +1,13 @@
 #!/usr/bin/env ruby
 
 require 'shiritori'
+require 'optparse'
 
-Shiritori::CLI.start(ARGV)
+options = { mode: 'normal' }
+
+opt_parse = OptionParser.new do |opt|
+  opt.banner = 'Usage: shiritori [options]'
+  opt.on('-m', '--mode', 'set shiritori difficulty') { |mode| options[:mode] = mode }
+end
+
+Shiritori::CLI.start(options)
