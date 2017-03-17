@@ -1,5 +1,3 @@
-require 'spec_helper'
-
 describe "Shiritori test" do
   let(:main){ Shiritori::Main.new }
 
