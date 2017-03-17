@@ -2,7 +2,7 @@ module Shiritori
   class CLI
     GAME_MODE = [:easy, :normal]
 
-    def start(options)
+    def self.start(options)
       mode = (options[:mode])? options[:mode].to_sym : :normal
 
       if GAME_MODE.include?(mode)
