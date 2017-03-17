@@ -60,7 +60,15 @@ module Helpers
     expect(__result__).to eq __expect__
   end
 end
- 
-RSpec.configure do |conf|
-  conf.include(Helpers)
+
+RSpec.configure do |config|
+  config.include(Helpers)
+
+  config.example_status_persistence_file_path = '.rspec_status'
+
+  config.order = :random
+
+  config.expect_with :rspec do |c|
+    c.syntax = :expect
+  end
 end
