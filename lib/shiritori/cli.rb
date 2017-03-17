@@ -1,10 +1,8 @@
 module Shiritori
-  class CLI < Thor
+  class CLI
     GAME_MODE = [:easy, :normal]
 
-    desc "start", "Start GAME!"
-    option :mode
-    def start
+    def start(options)
       mode = (options[:mode])? options[:mode].to_sym : :normal
 
       if GAME_MODE.include?(mode)
