@@ -138,7 +138,7 @@ module Shiritori
             puts "Exec command #{[@current_object.__to_s__, command].join('.')}"
             @current_chain << command
             update(action: action, object: object)
-          elsif used_method_list[action]
+          elsif used_method_list.include?(action)
             $error_message = "#{action} is already used."
             raise Shiritori::UseSameMethodError
           end
