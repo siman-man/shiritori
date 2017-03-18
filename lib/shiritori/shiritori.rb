@@ -190,7 +190,7 @@ module Shiritori
       if mode == :easy
         puts "You can use methods: #{can_use_methods.sample(5).inspect}"
       else
-        puts "\e[#{RED}mOh.. Sory, help command is only exist easy mode.\e[m"
+        puts "\e[#{RED}mOh.. Sorry, help command can use when easy mode.\e[m"
       end
 
       new_line
