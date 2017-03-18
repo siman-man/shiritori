@@ -1,5 +1,5 @@
 class String
-  BLANK_PATTERN = /^\s*$/
+  BLANK_PATTERN = /^[[:space:]]*$/
   
   def blank?
     self.size == 0 or self == BLANK_PATTERN
