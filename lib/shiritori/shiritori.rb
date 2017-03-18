@@ -73,7 +73,7 @@ module Shiritori
             end
           end.join
 
-          @current_chain << @current_object.to_ss
+          @current_chain << @current_object.__to_s__
           @success = true
           break
         rescue Exception => ex
@@ -135,7 +135,7 @@ module Shiritori
           elsif action == :exit
             break
           elsif @all_method.include?(action)
-            puts "Exec command #{[@current_object.to_ss, command].join('.')}"
+            puts "Exec command #{[@current_object.__to_s__, command].join('.')}"
             @current_chain << command
             update(action: action, object: object)
           elsif used_method_list[action]
@@ -172,7 +172,7 @@ module Shiritori
         rescue Exception => ex
           @error_count += 1
           $error_message = ex.message
-          failed_message("Exec command #{[@current_object.to_ss, command].join('.')}")
+          failed_message("Exec command #{[@current_object.__to_s__, command].join('.')}")
           failed_message("Failed! : #{$error_message}")
           return false
         end

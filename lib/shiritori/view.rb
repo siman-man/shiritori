@@ -38,7 +38,7 @@ module Shiritori
       puts "+#{'-' * chain_size}+"
 
       cls = "#{current_class}"
-      obj = "#{current_object.to_ss}"
+      obj = "#{current_object.__to_s__}"
       cls_size = ["#{current_class}".size, 13].max + PADDING
       cnt_size = 11 + PADDING
       obj_size = ["#{current_object}".size, 14].max + PADDING
