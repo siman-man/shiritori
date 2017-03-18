@@ -21,6 +21,17 @@ describe "Shiritori test" do
     end
   end
 
+  describe 'use same method' do
+    it 'UseSameMethodError occur' do
+      fake_stdin(%w("Ruby" nil? nil?)) do
+        expect { shiritori.start }.to output(/Can't use same method/).to_stdout
+      end
+
+      expect(shiritori.current_object).to eq(false)
+      expect(shiritori.error_count).to eq(1)
+    end
+  end
+
   describe 'Timeout' do
     context 'Timeout::Error occur' do
       it 'first object sleep' do
