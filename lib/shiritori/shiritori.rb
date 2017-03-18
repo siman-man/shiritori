@@ -50,7 +50,7 @@ module Shiritori
     end
 
     def init(mode)
-      @all_method = get_all_method
+      @all_method = get_all_methods
       @current_class = Object
       @current_chain = []
       @used_method_list = []

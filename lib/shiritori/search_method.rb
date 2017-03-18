@@ -1,16 +1,9 @@
 module Shiritori
   module SearchMethod
-    UNUSE_METHOD = [:exit]
-
-    def get_all_method
-      @check_list = {}
-      @method_list = get_all_methods
-
-      @method_list - UNUSE_METHOD
-    end
+    UNUSE_METHOD = [:exit, :abort]
 
     def get_all_methods
-      ObjectSpace.each_object(Module).map(&:instance_methods).inject(&:|)
+      ObjectSpace.each_object(Module).map(&:instance_methods).inject(&:|) - UNUSE_METHOD
     end
   end
 end
