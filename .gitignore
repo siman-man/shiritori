@@ -21,6 +21,7 @@ tmp
 # Ignore junk file
 shiritori-*/*
 doc/
+.rspec_status
 **/*.swp
 *.swp
 **/*~
