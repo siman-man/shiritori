@@ -7,7 +7,7 @@ class String
 end
 
 class NilClass
-  def to_ss
+  def __to_s__
     'nil'
   end
 end
@@ -18,7 +18,7 @@ module Kernel
 end
 
 class Object
-  def to_ss
+  def __to_s__
     inspect
   end
 end
@@ -30,7 +30,7 @@ BasicObject.class_eval do
 end
 
 class BasicObject
-  def to_ss
+  def __to_s__
     self
   end
 
@@ -42,5 +42,5 @@ class BasicObject
     ::Kernel.eval(str, __binding__)
   end
 
-  alias_method :to_s, :to_ss
+  alias_method :to_s, :__to_s__
 end
